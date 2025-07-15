@@ -1,12 +1,13 @@
 pipeline {
     agent any
 
-    tools {
-        // Assuming Docker is available in the Jenkins environment
-        // If not, you might need to specify a Docker tool or ensure it's in the PATH
-    }
-
     stages {
+        stage('Pull Code') {
+            steps {
+                git 'https://github.com/MukherjeePushpendu/To-Do-project.git'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -14,6 +15,7 @@ pipeline {
                 }
             }
         }
+
         stage('Run Docker Container') {
             steps {
                 script {
@@ -24,4 +26,4 @@ pipeline {
             }
         }
     }
-} 
+}
